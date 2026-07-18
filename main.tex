@@ -1,0 +1,631 @@
+% ================================================================
+%  PrepFusion TITANS Batch Guidance
+%  A publication-quality onboarding & strategy PDF
+%
+%  ENGINE : pdfLaTeX  (Overleaf default)
+%  COMPILE : twice for hyperref cross-references
+%
+%  LOGO     : Place your logo as  logo.png  beside this .tex file
+%             Adjust [width=3.2cm] to resize
+%  WATERMARK: Change the text "PrepFusion" or swap to
+%             \includegraphics[...]{logo.png} inside the TikZ node
+%             Adjust opacity= (0.03–0.10) for subtlety
+% ================================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ── Encoding & Language ─────────────────────────────────────
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+% ── Page Geometry ───────────────────────────────────────────
+\usepackage[
+  top    = 0.6in,
+  bottom = 0.6in,
+  left   = 0.75in,
+  right  = 0.75in,
+  includeheadfoot
+]{geometry}
+
+% ── Colors ──────────────────────────────────────────────────
+\usepackage[dvipsnames, table]{xcolor}
+
+%  ★ BRAND PALETTE — edit these six lines to re-theme the doc
+\definecolor{pfNavy}    {HTML}{1A2F5A}   % Primary: deep navy (headings, rules)
+\definecolor{pfTeal}    {HTML}{0E7C7B}   % Accent:  teal (section titles)
+\definecolor{pfOrange}  {HTML}{E8602C}   % Alert:   action orange (callouts)
+\definecolor{pfCharcoal}{HTML}{2D2D2D}   % Body text charcoal
+\definecolor{pfLightBg} {HTML}{F4F6FA}   % Light background (boxes, alt rows)
+\definecolor{pfMid}     {HTML}{D0D7E8}   % Subtle border / rule colour
+
+% ── Typography ──────────────────────────────────────────────
+\usepackage[scaled=0.92]{helvet}         % Clean Helvetica sans-serif
+\usepackage{microtype}                   % Better kerning & line-breaking
+\renewcommand{\familydefault}{\sfdefault}% Make sans-serif the document default
+\color{pfCharcoal}                       % Apply body colour globally
+
+% ── Graphics & Watermark ────────────────────────────────────
+\usepackage{graphicx}
+\usepackage{tikz}                        % Used for watermark
+
+% ── Watermark Configuration ─────────────────────────────────
+%  Appears on EVERY page. Tweak opacity= between 0.03-0.10.
+%  To use a logo watermark instead of text, replace \node[...]{PrepFusion}
+%  with: \node{\includegraphics[width=8cm]{logo.png}};
+\usepackage{eso-pic}
+\usepackage{fontawesome5} % For \faMobileAlt and other icons
+\AddToShipoutPictureBG{%
+  \begin{tikzpicture}[remember picture, overlay]
+    \node[
+      rotate  = 45,              % ← angle of watermark
+      opacity = 0.05,            % ← transparency (0.03 = very faint, 0.12 = visible)
+      font    = \fontsize{72}{72}\selectfont\bfseries,
+      color   = pfNavy
+    ] at (current page.center) {PrepFusion};  % ← swap text or image here
+  \end{tikzpicture}%
+}
+
+% ── Header / Footer ─────────────────────────────────────────
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{%
+  \small\color{pfNavy}\textbf{PrepFusion}\ \textcolor{pfMid}{|}\ TITANS Batch Guidance
+}
+\fancyhead[R]{%
+  % ── LOGO in header ────────────────────────────────────────
+  %  Remove the comment below once logo.png is available
+  \includegraphics[height=18pt]{logo.png}
+  % \small\color{pfMid}GATE 
+}
+\fancyfoot[C]{%
+  \small\color{pfMid}Page \thepage\ of \pageref{LastPage}
+}
+\renewcommand{\headrulewidth}{1.2pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{pfNavy}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{pfMid}\leaders\hrule height \footrulewidth\hfill}}
+
+% ── Section Styling ──────────────────────────────────────────
+\usepackage{titlesec}
+
+% Section: simple navy rule + number
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{pfNavy}}
+  {\thesection.\hspace{6pt}}
+  {0pt}
+  {}
+  [\vspace{-8pt}\color{pfNavy}\rule{\linewidth}{1.2pt}]
+
+% Subsection: teal left rule
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries\color{pfTeal}}
+  {}
+  {0pt}
+  {\leavevmode\color{pfTeal}\rule[-2pt]{3pt}{12pt}\hspace{6pt}}
+
+\titlespacing*{\section}   {0pt}{18pt}{12pt}
+\titlespacing*{\subsection}{0pt}{12pt}{4pt}
+% ── Hyperlinks ───────────────────────────────────────────────
+\usepackage[
+  colorlinks = true,
+  linkcolor  = pfNavy,
+  urlcolor   = pfTeal,
+  citecolor  = pfNavy,
+  pdftitle   = {PrepFusion TITANS Batch Guidance},
+  pdfauthor  = {PrepFusion},
+]{hyperref}
+
+% ── Lists ────────────────────────────────────────────────────
+\usepackage{enumitem}
+
+% Compact global list defaults
+\setlist{
+  noitemsep,
+  topsep   = 4pt,
+  leftmargin = 1.6em,
+  parsep   = 0pt
+}
+\setlist[itemize]{label=\textcolor{pfTeal}{\textbullet}}
+\setlist[enumerate]{label=\textcolor{pfNavy}{\textbf{\arabic*.}}}
+
+% ── Tables ───────────────────────────────────────────────────
+\usepackage{booktabs}
+\usepackage{tabularx}
+\renewcommand{\arraystretch}{1.35}
+
+% ── Callout Boxes (tcolorbox) ────────────────────────────────
+\usepackage[most]{tcolorbox}
+
+% ── IMPORTANT alert box (orange) ─────────────────────────────
+\newtcolorbox{alertbox}[1][]{%
+  enhanced,
+  breakable,
+  colback    = pfOrange!8,
+  colframe   = pfOrange,
+  fonttitle  = \bfseries\small,
+  title      = {#1},
+  arc        = 3pt,
+  boxrule    = 1.2pt,
+  left=8pt, right=8pt, top=5pt, bottom=5pt,
+  before skip=8pt, after skip=8pt,
+}
+
+% ── Contact / Info box (navy) ─────────────────────────────────
+\newtcolorbox{infobox}[1][]{%
+  enhanced,
+  colback    = pfLightBg,
+  colframe   = pfNavy,
+  fonttitle  = \bfseries\small\color{white},
+  colbacktitle = pfNavy,
+  title      = {#1},
+  arc        = 3pt,
+  boxrule    = 1pt,
+  left=8pt, right=8pt, top=5pt, bottom=5pt,
+  before skip=8pt, after skip=8pt,
+}
+
+% ── Step box (teal, numbered steps) ──────────────────────────
+\newtcolorbox{stepbox}[1][]{%
+  enhanced,
+  colback    = pfTeal!6,
+  colframe   = pfTeal,
+  fonttitle  = \bfseries\small\color{white},
+  colbacktitle = pfTeal,
+  title      = {#1},
+  arc        = 3pt,
+  boxrule    = 1pt,
+  left=8pt, right=8pt, top=5pt, bottom=5pt,
+  before skip=8pt, after skip=8pt,
+}
+
+% ── Note box (inline, frameless subtle) ──────────────────────
+\newtcolorbox{notebox}{%
+  enhanced,
+  colback   = pfMid!30,
+  colframe  = pfMid,
+  arc       = 2pt,
+  boxrule   = 0.7pt,
+  left=6pt, right=6pt, top=3pt, bottom=3pt,
+  before skip=6pt, after skip=6pt,
+}
+
+% ── Misc utilities ───────────────────────────────────────────
+\usepackage{parskip}            % Space between paragraphs, no indent
+\usepackage{setspace}
+\setstretch{1.18}
+
+\usepackage{array}
+\usepackage{ragged2e}
+
+% ── Convenience macro ────────────────────────────────────────
+\newcommand{\pflink}[2]{\href{#1}{\textcolor{pfTeal}{\underline{#2}}}}
+\newcommand{\pf}{\textbf{\textcolor{pfNavy}{PrepFusion}}}
+\newcommand{\sectionrule}{\vspace{2pt}\textcolor{pfMid}{\hrule}\vspace{6pt}}
+
+
+% ================================================================
+%  DOCUMENT BEGINS
+% ================================================================
+\begin{document}
+
+% ── TITLE PAGE HEADER ────────────────────────────────────────
+\begin{tcolorbox}[
+  enhanced,
+  colback   = pfNavy,
+  colframe  = pfNavy,
+  arc       = 0pt,
+  boxrule   = 0pt,
+  left=16pt, right=16pt, top=18pt, bottom=14pt,
+]
+  \begin{minipage}[c]{0.72\linewidth}
+    {\fontsize{22}{26}\selectfont\bfseries\color{white}
+      PrepFusion TITANS Batch}\\[4pt]
+    {\large\color{pfMid} Student Onboarding \& Preparation Guide}\\[6pt]
+    {\small\color{pfMid}
+      \faCalendar\enspace GATE Edition\quad
+      \faUsers\enspace TITANS Batch\quad
+      \faGlobe\enspace \href{https://prepfusion.in}{\color{white}prepfusion.in}
+    }
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[c]{0.24\linewidth}
+    \raggedleft
+    % ── LOGO PLACEHOLDER ──────────────────────────────────────
+    %  Uncomment & place logo.png in the same folder as this file
+    \includegraphics[width=3.2cm]{logo.png}
+    %
+    % %  Placeholder visual when logo is absent:
+    % \begin{tcolorbox}[
+    %   colback=white!15!pfNavy, colframe=white!30!pfNavy,
+    %   arc=4pt, boxrule=1pt,
+    %   left=6pt,right=6pt,top=8pt,bottom=8pt,
+    %   halign=center
+    % ]
+    %   \color{white}\small\bfseries LOGO\\[2pt]
+    %   \tiny\color{pfMid}Replace with\\logo.png
+    % \end{tcolorbox}
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{14pt}
+
+% ── WELCOME NOTE ─────────────────────────────────────────────
+\begin{infobox}[\faHandshake\enspace Welcome to PrepFusion!]
+  \small
+  Hi! Thanks for joining the \textbf{PrepFusion TITANS Batch}. We'll have a
+  \textbf{1:1 Google Meet session on weekends} to personalise your roadmap. In the
+  meantime, this guide covers everything you need to get started—strategy,
+  resources, app setup, and troubleshooting.
+
+  \vspace{6pt}
+  \textbf{Your Direct Support Contacts:}
+
+  \begin{tabular}{@{}ll@{\hspace{24pt}}ll@{}}
+    \faWhatsapp\ \textbf{Anish Sir}    & \texttt{+91-7980452273} &
+    \faWhatsapp\ \textbf{Himanshu Sir} & \texttt{+91-9079108591}
+  \end{tabular}
+
+  \vspace{4pt}
+  {\footnotesize\color{pfNavy}
+    Tip: Briefly introduce yourself when you first message so we can guide you better!}
+\end{infobox}
+
+\vspace{4pt}
+
+% ================================================================
+%  SECTION 1 — PREPARATION STRATEGY
+% ================================================================
+\section{Preparation Strategy}
+
+\subsection{Recommended Starting Order}
+
+\begin{alertbox}[\faExclamationTriangle\enspace Action Required — Start Here First]
+  \small
+  Begin with \textbf{Network Theory} and work through all lectures up to and
+  including \textbf{Chapter 3: Transient Analysis}. \\[4pt]
+  After that, you may proceed with either \textbf{Digital Electronics} or
+  \textbf{Signals \& Systems} — \emph{the choice is yours}.\\[4pt]
+  \textbf{Do not start with any other subject initially.}
+\end{alertbox}
+
+\vspace{4pt}
+
+\begin{tabularx}{\linewidth}{@{} >{\bfseries\color{pfNavy}}p{3cm} X @{}}
+  \toprule
+  \rowcolor{pfNavy}
+  \textcolor{white}{Subject} & \textcolor{white}{Guidance} \\
+  \midrule
+  Network Theory
+    & \textbf{Start here.} Watch all lectures through Chapter 3 (Transient
+      Analysis). Foundational for all analog subjects. \\
+  \rowcolor{pfLightBg}
+  Digital Electronics
+    & Strong second option. Pairs well with Digital VLSI.
+      topics later in the syllabus. \\
+  Signals and Systems
+    & Excellent choice if you are comfortable with mathematics. Builds
+      directly into Control Systems and Communications. \\
+  \bottomrule
+\end{tabularx}
+
+\vspace{8pt}
+
+\begin{notebox}
+  \small\faInfoCircle\enspace
+  For any subject-specific doubts, post in the \textbf{batch group} or DM
+  Anish Sir / Himanshu Sir directly (contacts above).
+\end{notebox}
+
+% ================================================================
+%  SECTION 2 — VIDEO RESOURCES
+% ================================================================
+\section{Essential Videos \& Resources}
+
+Watch the following in the order listed. These will be revisited in your 1:1
+Google Meet session.
+
+\begin{alertbox}[\faStar\enspace MOST IMPORTANT — Watch First]
+  \small
+  \textbf{Preparation Strategy for GATE | Placements | Internships}
+  (for College-Going Students)\\[3pt]
+  \pflink{https://youtu.be/6Wp2MuZTROw?si=_ztRWiHsB8xWkxID}%
+         {youtu.be/6Wp2MuZTROw}
+\end{alertbox}
+
+\vspace{4pt}
+
+\begin{tabularx}{\linewidth}{@{} >{\centering\bfseries\color{pfNavy}\small}p{0.55cm}
+                                   >{\small}X
+                                   >{\small\raggedright\arraybackslash}p{5.2cm} @{}}
+  \toprule
+  \rowcolor{pfNavy}
+  \textcolor{white}{\#}
+    & \textcolor{white}{Topic}
+    & \textcolor{white}{Link} \\
+  \midrule
+
+  2
+    & How to Download \& Watch Lectures (iOS / Windows)
+    & \pflink{https://youtube.com/playlist?list=PLgF7lRh8Xb_UGoxk2eDW04f0Mt-5njvg8}%
+             {Playlist $\to$ YouTube} \\
+
+  \rowcolor{pfLightBg}
+  3
+    & How to Make Notes / Study from Printable Notes
+    & \pflink{https://youtu.be/CZQdxnzH52A?si=QTpbNtHoxIe9aVLA}%
+             {youtu.be/CZQdxnzH52A} \\
+
+  4
+    & Access All RevisionX Short Notes by \pf
+    & \pflink{https://prepfusion.in/new-courses/72-revisionx-short-notes-for-gate-by-prepfusion?activeTab=content}%
+             {prepfusion.in $\to$ RevisionX Notes} \\
+
+  \rowcolor{pfLightBg}
+  5
+    & How to Use the GATE Virtual Calculator
+    & \pflink{https://youtu.be/IB_U5bfctdU}%
+             {youtu.be/IB\_U5bfctdU} \\
+
+  6
+    & How to Be Consistent \& Efficient in Preparation
+    & \pflink{https://youtu.be/Om3BA287oW4?si=MXyQMgHnAtGCl84k}%
+             {youtu.be/Om3BA287oW4} \\
+
+  \rowcolor{pfLightBg}
+  7
+    & How to Solve the PYQs (Previous Year Questions)
+    & \pflink{https://youtu.be/jmGcZlf-KVY?si=V7pdzg60M_Ck1fMw}%
+             {youtu.be/jmGcZlf-KVY} \\
+
+  8
+    & How to Revise a Subject
+    & \pflink{https://youtu.be/6oyb1Ieq4sE?si=BTmk6yOw_JB1e3LL}%
+             {youtu.be/6oyb1Ieq4sE} \\
+
+  \rowcolor{pfLightBg}
+  9
+    & College going students odd sem
+    & \pflink{https://youtu.be/IPCsBvsPO0c?si=QEWMvFsFPtCRaMbU}%
+             {youtu.be/IPCsBvsPO0c} \\
+
+  \rowcolor{pfLightBg}
+  10
+    & College going students even sem
+    & \pflink{https://youtu.be/6Wp2MuZTROw?si=LNGwzmCIzhrywvBJ}%
+             {youtu.be/6Wp2MuZTROw} \\
+
+  
+  11
+    & All quires regarding test series
+    & \pflink{https://youtu.be/dkw2E8X6tm0?si=fwAgcRM0bKs8TuWx}%
+             {youtu.be/dkw2E8X6tm0} \\
+
+  \rowcolor{pfLightBg}
+  12
+    & Final 200 days preparation startegy
+    & \pflink{https://youtu.be/qDak-rJzmlE?si=YCM7wPE4ui4oG4J8}%
+             {youtu.be/qDak-rJzmlE} \\
+  13
+ 
+& Managing gate prep with semester exam 
+   & \pflink{https://youtu.be/FWbhMqu7UAo?si=1FzUngwV8hK8obvV}%
+             {youtu.be/FWbhMqu7UAo} \\
+      \rowcolor{pfLightBg}       
+   14
+  
+   & Special Message for 3rd Year Students - 
+   & \pflink{https://youtu.be/xYcxa0V2YBY?si=ziegNYV1qP06oXBM}%
+             {youtu.be/xYcxa0V2YBY} \\
+   15
+  
+   & GATE : How much Rank is Enough?
+   % Fix applied below: added \ before the underscore in the display text
+   & \pflink{https://youtu.be/_Xe0h7Tm-e0?si=hTEifHjm0dvLsIu8}%
+             {youtu.be/\_Xe0h7Tm-e0} \\
+
+  \rowcolor{pfLightBg}
+  
+   16
+   & Preparation Strategy for Droppers
+   & \pflink{https://youtu.be/OmNwNgEP0JE?si=xDZg8ztDFFIv3NYL}%
+             {youtu.be/OmNwNgEP0JE} \\
+
+  \bottomrule
+\end{tabularx}
+\newpage
+% ================================================================
+%  SECTION 3 — APP SUPPORT & PLATFORM GUIDES
+% ================================================================
+\section{App Support \& Platform Guides}
+
+\begin{notebox}
+  \small\faInfoCircle\enspace
+  \textbf{All courses are also accessible via our website.}
+  Use \textbf{Google Chrome} for the best experience on any device.
+\end{notebox}
+
+\subsection{\faApple\enspace iOS Setup}
+
+\begin{stepbox}[iOS App — MyAppx]
+  \small
+  \begin{enumerate}
+    \item Download the \textbf{MyAppx} app from the App Store.
+    \item Open the app and enter \textbf{Organisation ID:} \texttt{4531207}
+    \item Watch the full setup guide:\\
+          \pflink{https://youtu.be/RhYtDtoUPhU?si=n_66JpMqoDp1b5gn}%
+                 {youtu.be/RhYtDtoUPhU}
+  \end{enumerate}
+\end{stepbox}
+
+\subsection{\faWindows\enspace Windows PC Setup}
+
+\begin{stepbox}[Windows Desktop App]
+  \small
+  \begin{enumerate}
+    \item Watch the installation guide:\\
+          \pflink{https://youtu.be/__0wNZdPpCE?si=SPlTD77EM-52Hhji}%
+                 {youtu.be/\_\_0wNZdPpCE}
+    \item Download link is available at the \textbf{bottom of our website}
+          \pflink{https://prepfusion.in}{(prepfusion.in)}.
+    \item Choose the correct version:
+          \begin{itemize}
+            \item Intel chip Mac / Windows PC $\to$ \textbf{Intel version}
+            \item Apple Silicon Mac (M1/M2/M3) $\to$ \textbf{Apple Chip version}
+          \end{itemize}
+  \end{enumerate}
+\end{stepbox}
+
+\subsection{\faDesktop\enspace PC Application Troubleshooting}
+
+\begin{alertbox}[\faExclamationCircle\enspace PC APP Issue? Try These Steps]
+  \small
+  \begin{enumerate}
+    \item \textbf{Disconnect} any external monitor connected to your PC or Mac.
+    \item \textbf{Switch} to a different internet connection (hotspot, router, etc.).
+    \item \textbf{Re-download} the correct app version:
+      \begin{itemize}
+        \item Intel chip $\to$ Intel version\quad|\quad Apple chip $\to$ Apple Chip version
+      \end{itemize}
+    \item Download link is at the \textbf{bottom of our website}.
+  \end{enumerate}
+\end{alertbox}
+
+\subsection{\faBug\enspace General App Troubleshooting}
+
+\begin{stepbox}[General Fix — Follow in Order]
+  \small
+  \begin{enumerate}
+    \item Mention the exact issue; attach a \textbf{screenshot or short video}
+          along with your exact device \& OS (e.g., Windows PC / MacBook M2).
+    \item \textbf{Disconnect} any external monitor.
+    \item \textbf{Log out from all devices}, then log back in on one device.
+    \item Ensure you have the \textbf{latest version} of the app installed.
+    \item \textbf{Switch internet connection} (try mobile data or a different Wi-Fi).
+    \item Switch browser to \textbf{Google Chrome} if using the website.
+  \end{enumerate}
+\end{stepbox}
+
+% ================================================================
+%  SECTION 4 — TEST SERIES & AIMT
+% ================================================================
+\section{Test Series \& AIMT}
+
+\subsection{\faClipboardList\enspace Fusion Test Series}
+
+\begin{infobox}[\faPlayCircle\enspace Complete Test Series Guide]
+  \small
+  Watch this video for all information about the Test Series structure,
+  schedule, and how to approach it:\\[4pt]
+  \pflink{https://youtu.be/inroz60EZMU?si=QycCbYVmwe6eeNH3}%
+         {youtu.be/inroz60EZMU}
+
+  \vspace{6pt}
+  For test series doubts and bug reports, watch:\\
+  \pflink{https://youtu.be/uKWywj2QbfE?si=HBqAVgk6pkMc2PlS}%
+         {youtu.be/uKWywj2QbfE}
+\end{infobox}
+
+\subsection{\faTrophy\enspace AIMT — Placement Test Series}
+
+\begin{infobox}[AIMT: Level \& Quality of Questions]
+  \small
+  Get a complete overview of the AIMT Placement Test Series question style
+  and difficulty level:\\[4pt]
+  \pflink{https://youtube.com/playlist?list=PLgF7lRh8Xb_XxXA_frTaDRP-NRkQnnMns}%
+         {YouTube Playlist $\to$ AIMT Question Levels}
+\end{infobox}
+
+% ================================================================
+%  SECTION 5 — OFFLINE VIDEO DOWNLOADS
+% ================================================================
+\section{Offline Video Downloads}
+
+\begin{tabularx}{\linewidth}{@{} >{\centering\arraybackslash}p{0.5cm} X @{}}
+  \toprule
+  \rowcolor{pfNavy}
+  & \textcolor{white}{\bfseries\small Download Rules \& Limits} \\
+  \midrule
+  \faCheckCircle\ \color{pfTeal}
+    & Videos downloaded on the \textbf{Android app} require a \emph{minimal}
+      internet connection to play (very slow speeds work). Fully offline
+      playback is in development. \\
+  \rowcolor{pfLightBg}
+  \faCheckCircle\ \color{pfTeal}
+    & Downloads are only available on the \textbf{Android mobile app}. \\
+  \faTimes\ \color{pfOrange}
+    & Older videos may \emph{not} be downloadable due to platform restrictions. \\
+  \rowcolor{pfLightBg}
+  \faTimes\ \color{pfOrange}
+    & \textbf{YouTube-hosted} videos cannot be downloaded through the app. \\
+  \bottomrule
+\end{tabularx}
+
+\vspace{8pt}
+
+\begin{alertbox}[\faWrench\enspace Downloads Not Working?]
+  \small
+  \begin{enumerate}
+    \item \textbf{Re-install} the app \emph{or} log out from all devices, then
+          log back in.
+    \item \textbf{Update} the app to the latest version from the Play Store.
+    \item Retry the download on a \textbf{stable internet connection}.
+  \end{enumerate}
+  \vspace{2pt}
+  Thanks for your patience while we improve offline functionality!
+\end{alertbox}
+%================================================================
+%  SECTION 6 — HOW TO PRINT PDF CORRECTLY (NEW)
+% ================================================================
+\section{How to Print PDFs Correctly}
+
+\begin{alertbox}[\faPrint\enspace CRITICAL — Avoid Adobe Acrobat / Reader]
+  \small
+  \textbf{Do not use Adobe Acrobat or Adobe Reader to print out your course sheets or short notes.} Doing so can sometimes mess up formatting, margins, or corrupt layered graphic objects native to the export engine.\\[4pt]
+  Always open and print your files directly through a web browser such as \textbf{Google Chrome}, \textbf{Microsoft Edge}, or \textbf{Mozilla Firefox} for perfect layout retention.
+\end{alertbox}
+
+\subsection{\faMobile\enspace Mobile PDF Modification \& Processing Workaround}
+
+If you need to edit, clean up, or safely save your lecture notes using a mobile device before sending them for printing, use the following processing guide:
+
+\begin{stepbox}[\faDesktop \enspace Processing Notes on Mobile]
+  \small
+  \begin{enumerate}
+    \item \textbf{Install the App:} Download and install the verified utility app via the Google Play Store: \\
+          \pflink{https://play.google.com/store/apps/details?id=com.cambyte.okenscan}{Play Store $\to$ OKEN Scanner App}
+    \item\textbf{Can open the other app also: } Also you  can use the other scanner if it is compatible  that does the same job as this app is doing.
+    \item \textbf{Open the Document:} Navigate to your downloaded study PDF file on your smartphone.
+    \item \textbf{Importing:} Select the file and trigger the system prompt. Choose the option \textbf{"Save to OKEN Scanner"} / \textbf{"Open with OKEN Scanner"} from your system default list.
+    \item \textbf{Save \& Clean Export:} Let the engine structure your document layers. Save the fresh copy from inside the application.
+    \item \textbf{Share \& Print:} Use this newly optimized, cleanly exported PDF file to forward directly to your local printing setup.
+  \end{enumerate}
+\end{stepbox}
+% ================================================================
+%  FOOTER / CONTACT SUMMARY
+% ================================================================
+\vspace{16pt}
+\sectionrule
+
+\begin{tcolorbox}[
+  enhanced,
+  colback   = pfNavy,
+  colframe  = pfNavy,
+  arc       = 4pt,
+  boxrule   = 0pt,
+  left=12pt, right=12pt, top=10pt, bottom=10pt,
+]
+  \centering
+  {\bfseries\color{white}Need Help? Reach Out Anytime}\\[6pt]
+  \small\color{pfMid}
+  \faWhatsapp\ \textbf{\color{white}Anish Sir}\ \texttt{+91-79804 52273}
+  \quad\textcolor{pfMid}{|}\quad
+  \faWhatsapp\ \textbf{\color{white}Himanshu Sir}\ \texttt{+91-90791 08591}\\[6pt]
+  \faGlobe\ \href{https://prepfusion.in}{\color{white}www.prepfusion.in}
+  \qquad
+  \faYoutube\ \href{https://youtube.com/@PrepFusion-GATE}{\color{white}@PrepFusion-GATE}
+\end{tcolorbox}
+
+\end{document}
