@@ -1,0 +1,316 @@
+% ================================================================
+%  SHARED BODY — Essential Videos onward (used by main.tex & navigate.tex)
+%  Expects \batchname and \videointro to be defined before \input.
+% ================================================================
+
+% \ytrow{Topic}{videoID}{si-token}  -> numbered, zebra-striped row
+\newcounter{vid}
+\newcommand{\vidrow}[3]{%
+  \ifodd\value{vid}\rowcolor{pfLightBg}\fi
+  \stepcounter{vid}%
+  \textbf{\textcolor{pfNavy}{\thevid}} & #1 & \pflink{#2}{#3} \\}
+\newcommand{\ytrow}[3]{%
+  \vidrow{#1}{https://youtu.be/#2?si=#3}{youtu.be/\detokenize{#2}}}
+\newenvironment{vidtable}{%
+  \xltabular{\linewidth}{@{} >{\small\centering\arraybackslash}p{0.55cm}
+                                     >{\small}X
+                                     >{\small\raggedright\arraybackslash}p{5.2cm} @{}}
+  \toprule
+  \rowcolor{pfNavy}
+  \textcolor{white}{\#} & \textcolor{white}{Topic} & \textcolor{white}{Link} \\
+  \midrule\endhead}{%
+  \bottomrule
+  \endxltabular}
+
+\section{Essential Videos \& Resources}
+
+\videointro
+
+\begin{alertbox}[\faStar\enspace MOST IMPORTANT — Watch First]
+  \small
+  \textbf{Preparation Strategy for GATE | Placements | Internships}
+  (for College-Going Students)\\[3pt]
+  \pflink{https://youtu.be/6Wp2MuZTROw?si=SuLMnfhXvtHDUTv4}%
+         {youtu.be/6Wp2MuZTROw}
+\end{alertbox}
+
+\subsection{Preparation Strategy}
+
+\begin{vidtable}
+  \ytrow{College-going students — 3rd Sem / 5th Sem}{IPCsBvsPO0c}{UVB0XwxgyN6zLDDo}
+  \ytrow{College-going students — 4th Sem / 6th Sem}{6Wp2MuZTROw}{SuLMnfhXvtHDUTv4}
+  \ytrow{Preparation Strategy for Droppers}{6deJ7m2Joic}{fqYBZjzL1Tjwcce9}
+  \ytrow{Final 200 Days Roadmap}{qDak-rJzmlE}{knLyQojhPTu0Tu62}
+  \ytrow{Final 6 Months Roadmap}{4xl5AzGckjc}{afqP7Y8aW6_sN-aa}
+  \ytrow{Final 150 Days Roadmap}{ymrW8I_aDhk}{uenUrtuXzyXwTz82}
+  \ytrow{A Special Message to 3rd Year Students}{JZtAZVNNxvg}{V6tPxnk-oMDDfAie}
+  \ytrow{Managing GATE Prep Near Semester Exams}{FWbhMqu7UAo}{MOma6O87NkUsPLpH}
+  \ytrow{GATE: How Much Rank is Enough?}{_Xe0h7Tm-e0}{hTEifHjm0dvLsIu8}
+\end{vidtable}
+
+\begin{notebox}
+  \small\faInfoCircle\enspace
+  \textbf{Dropper starting afresh?} If you are a dropper starting your
+  preparation from scratch, also refer to the guidance videos for
+  college-going students above.
+\end{notebox}
+
+\subsection{Study Techniques}
+
+\begin{vidtable}
+  \setcounter{vid}{0}
+  \ytrow{How to Solve PYQs Efficiently}{mb_f9_fnhYI}{qkSk23Ls_IzTEtjK}
+  \ytrow{How to Revise a Subject (Part 1)}{6oyb1Ieq4sE}{WLAnrOTqBgfO3ePL}
+  \ytrow{How to Revise a Subject (Part 2)}{SuHXiJ4_h-Y}{4pEjMMyuI6dg61Ft}
+  \ytrow{How to Be Consistent \& Efficient in Preparation}{Om3BA287oW4}{rMtlSWKMWazyFAhN}
+  \ytrow{How to Avoid Social Media Distractions}{-nX7wnuVleg}{FQ5NmxsjupkZfVHr}
+  \ytrow{Speed vs Accuracy}{kAq-9NLGFrs}{E8MZ-4Nzj3TIQMWm}
+\end{vidtable}
+
+\subsection{Lectures, Notes \& Tools}
+
+\begin{vidtable}
+  \setcounter{vid}{0}
+  \ytrow{Watch Lectures Like a Pro}{AgMRD3kvJCA}{Yt9V4cJScSou3t1i}
+  \vidrow{How to Study with Printable Notes (Short)}
+    {https://youtube.com/shorts/osspoEAvn3E?si=OrWalscsTb2ceyXl}
+    {youtube.com/shorts/osspoEAvn3E}
+  \vidrow{Access All RevisionX Short Notes by \pf}
+    {https://prepfusion.in/new-courses/72-revisionx-short-notes-for-gate-by-prepfusion?activeTab=content}
+    {prepfusion.in $\to$ RevisionX Notes}
+  \ytrow{How to Use the GATE Virtual Calculator}{IB_U5bfctdU}{6K7Zn6DV0_U_NYx-}
+  \ytrow{All Queries Regarding Test Series}{dkw2E8X6tm0}{E0JA6GyoxEcjA6kF}
+\end{vidtable}
+
+\subsection{Subject Guidance}
+
+\begin{vidtable}
+  \setcounter{vid}{0}
+  \ytrow{Don't Underestimate Engineering Mathematics}{yE-o-tRYrgY}{Y1TnfxDUE9eIzxSa}
+  \ytrow{How to Prepare General Aptitude for GATE}{CnZgpW8iK7M}{DLWcn6jWUFJDGl5G}
+\end{vidtable}
+
+\subsection{AI \& Career}
+
+\begin{vidtable}
+  \setcounter{vid}{0}
+  \ytrow{How to Use AI in GATE Prep}{CPmU5Br7FXE}{IEimjrZldzM9vgZp}
+  \ytrow{Impact of AI on VLSI Jobs}{Akayoz6ID3w}{axFmKEWtE5H3_TVS}
+  \ytrow{No PPO? What to Do?}{2_UPHG9WSJo}{WIYMuD857Sfbkfx7}
+\end{vidtable}
+
+
+
+
+\newpage
+\section{Gate 2027 new updates syllabus have changed}
+\begin{tabularx}{\linewidth}{@{} >{\centering\bfseries\color{pfNavy}\small}p{0.55cm} 
+                                   >{\small}X 
+                                   >{\small\raggedright\arraybackslash}p{5.2cm} @{}}
+  \toprule
+  \rowcolor{pfNavy}
+  \textcolor{white}{\#} & \textcolor{white}{Topic} & \textcolor{white}{Link} \\
+  \midrule
+
+  1 & What are the major changes in ECE course
+    & \href{https://youtu.be/NeWtW3_nTwo}{Watch ECE Update} \\
+
+  \rowcolor{pfLightBg}
+  2 & What are the major changes in EE/IN course
+    & \href{https://youtu.be/97CP-xG_Dis}{Watch EE/IN Update} \\
+
+  \bottomrule
+\end{tabularx}
+% ================================================================
+%  SECTION 3 — APP SUPPORT & PLATFORM GUIDES
+% ================================================================
+\section{App Support \& Platform Guides}
+
+\begin{notebox}
+  \small\faInfoCircle\enspace
+  \textbf{All courses are also accessible via our website.}
+  Use \textbf{Google Chrome} for the best experience on any device.
+\end{notebox}
+
+\subsection{\faApple\enspace iOS Setup}
+
+\begin{stepbox}[iOS App — MyAppx]
+  \small
+  \begin{enumerate}
+    \item Download the \textbf{MyAppx} app from the App Store.
+    \item Open the app and enter \textbf{Organisation ID:} \texttt{4531207}
+    \item Watch the full setup guide:\\
+          \pflink{https://youtu.be/RhYtDtoUPhU?si=n_66JpMqoDp1b5gn}%
+                 {youtu.be/RhYtDtoUPhU}
+  \end{enumerate}
+\end{stepbox}
+
+\subsection{\faWindows\enspace Windows PC Setup}
+
+\begin{stepbox}[Windows Desktop App]
+  \small
+  \begin{enumerate}
+    \item Watch the installation guide:\\
+          \pflink{https://youtu.be/__0wNZdPpCE?si=SPlTD77EM-52Hhji}%
+                 {youtu.be/\_\_0wNZdPpCE}
+    \item Download link is available at the \textbf{bottom of our website}
+          \pflink{https://prepfusion.in}{(prepfusion.in)}.
+    \item Choose the correct version:
+          \begin{itemize}
+            \item Intel chip Mac / Windows PC $\to$ \textbf{Intel version}
+            \item Apple Silicon Mac (M1/M2/M3) $\to$ \textbf{Apple Chip version}
+          \end{itemize}
+  \end{enumerate}
+\end{stepbox}
+
+\subsection{\faDesktop\enspace PC Application Troubleshooting}
+
+\begin{alertbox}[\faExclamationCircle\enspace PC APP Issue? Try These Steps]
+  \small
+  \begin{enumerate}
+    \item \textbf{Disconnect} any external monitor connected to your PC or Mac.
+    \item \textbf{Switch} to a different internet connection (hotspot, router, etc.).
+    \item \textbf{Re-download} the correct app version:
+      \begin{itemize}
+        \item Intel chip $\to$ Intel version\quad|\quad Apple chip $\to$ Apple Chip version
+      \end{itemize}
+    \item Download link is at the \textbf{bottom of our website}.
+  \end{enumerate}
+\end{alertbox}
+
+\subsection{\faBug\enspace General App Troubleshooting}
+
+\begin{stepbox}[General Fix — Follow in Order]
+  \small
+  \begin{enumerate}
+    \item Mention the exact issue; attach a \textbf{screenshot or short video}
+          along with your exact device \& OS (e.g., Windows PC / MacBook M2).
+    \item \textbf{Disconnect} any external monitor.
+    \item \textbf{Log out from all devices}, then log back in on one device.
+    \item Ensure you have the \textbf{latest version} of the app installed.
+    \item \textbf{Switch internet connection} (try mobile data or a different Wi-Fi).
+    \item Switch browser to \textbf{Google Chrome} if using the website.
+  \end{enumerate}
+\end{stepbox}
+
+% ================================================================
+%  SECTION 4 — TEST SERIES & AIMT
+% ================================================================
+\section{Test Series \& AIMT}
+
+\subsection{\faClipboardList\enspace Fusion Test Series}
+
+\begin{infobox}[\faPlayCircle\enspace Complete Test Series Guide]
+  \small
+  Watch this video for all information about the Test Series structure,
+  schedule, and how to approach it:\\[4pt]
+  \pflink{https://youtu.be/inroz60EZMU?si=QycCbYVmwe6eeNH3}%
+         {youtu.be/inroz60EZMU}
+
+  \vspace{6pt}
+  For test series doubts and bug reports, watch:\\
+  \pflink{https://youtu.be/uKWywj2QbfE?si=HBqAVgk6pkMc2PlS}%
+         {youtu.be/uKWywj2QbfE}
+\end{infobox}
+
+\subsection{\faTrophy\enspace AIMT — Placement Test Series}
+
+\begin{infobox}[AIMT: Level \& Quality of Questions]
+  \small
+  Get a complete overview of the AIMT Placement Test Series question style
+  and difficulty level:\\[4pt]
+  \pflink{https://youtube.com/playlist?list=PLgF7lRh8Xb_XxXA_frTaDRP-NRkQnnMns}%
+         {YouTube Playlist $\to$ AIMT Question Levels}
+\end{infobox}
+\newpage
+% ================================================================
+%  SECTION 5 — OFFLINE VIDEO DOWNLOADS
+% ================================================================
+\section{Offline Video Downloads}
+
+\begin{tabularx}{\linewidth}{@{} >{\centering\arraybackslash}p{0.5cm} X @{}}
+  \toprule
+  \rowcolor{pfNavy}
+  & \textcolor{white}{\bfseries\small Download Rules \& Limits} \\
+  \midrule
+  \faCheckCircle\ \color{pfTeal}
+    & Videos downloaded on the \textbf{Android app} require a \emph{minimal}
+      internet connection to play (very slow speeds work). Fully offline
+      playback is in development. \\
+  \rowcolor{pfLightBg}
+  \faCheckCircle\ \color{pfTeal}
+    & Downloads are only available on the \textbf{Android mobile app}. \\
+  \faTimes\ \color{pfOrange}
+    & Older videos may \emph{not} be downloadable due to platform restrictions. \\
+  \rowcolor{pfLightBg}
+  \faTimes\ \color{pfOrange}
+    & \textbf{YouTube-hosted} videos cannot be downloaded through the app. \\
+  \bottomrule
+\end{tabularx}
+
+\vspace{8pt}
+
+\begin{alertbox}[\faWrench\enspace Downloads Not Working?]
+  \small
+  \begin{enumerate}
+    \item \textbf{Re-install} the app \emph{or} log out from all devices, then
+          log back in.
+    \item \textbf{Update} the app to the latest version from the Play Store.
+    \item Retry the download on a \textbf{stable internet connection}.
+  \end{enumerate}
+  \vspace{2pt}
+  Thanks for your patience while we improve offline functionality!
+\end{alertbox}
+%================================================================
+%  SECTION 6 — HOW TO PRINT PDF CORRECTLY (NEW)
+% ================================================================
+\section{How to Print PDFs Correctly}
+
+\begin{alertbox}[\faPrint\enspace CRITICAL — Avoid Adobe Acrobat / Reader]
+  \small
+  \textbf{Do not use Adobe Acrobat or Adobe Reader to print out your course sheets or short notes.} Doing so can sometimes mess up formatting, margins, or corrupt layered graphic objects native to the export engine.\\[4pt]
+  Always open and print your files directly through a web browser such as \textbf{Google Chrome}, \textbf{Microsoft Edge}, or \textbf{Mozilla Firefox} for perfect layout retention.
+\end{alertbox}
+
+\subsection{\faMobile\enspace Mobile PDF Modification \& Processing Workaround}
+
+If you need to edit, clean up, or safely save your lecture notes using a mobile device before sending them for printing, use the following processing guide:
+
+\begin{stepbox}[\faDesktop \enspace Processing Notes on Mobile]
+  \small
+  \begin{enumerate}
+    \item \textbf{Install the App:} Download and install the verified utility app via the Google Play Store: \\
+          \pflink{https://play.google.com/store/apps/details?id=com.cambyte.okenscan}{Play Store $\to$ OKEN Scanner App}
+    \item\textbf{Can open the other app also: } Also you  can use the other scanner if it is compatible  that does the same job as this app is doing.
+    \item \textbf{Open the Document:} Navigate to your downloaded study PDF file on your smartphone.
+    \item \textbf{Importing:} Select the file and trigger the system prompt. Choose the option \textbf{"Save to OKEN Scanner"} / \textbf{"Open with OKEN Scanner"} from your system default list.
+    \item \textbf{Save \& Clean Export:} Let the engine structure your document layers. Save the fresh copy from inside the application.
+    \item \textbf{Share \& Print:} Use this newly optimized, cleanly exported PDF file to forward directly to your local printing setup.
+    \item \textbf{Alternative Browser Workaround:} Open your PDF directly in \textbf{Google Chrome} and print from there; instruct your local print shop to do the same to ensure crisp, error-free outputs every time.
+    
+  \end{enumerate}
+\end{stepbox}
+% ================================================================
+%  FOOTER / CONTACT SUMMARY
+% ================================================================
+\vspace{16pt}
+\sectionrule
+
+\begin{tcolorbox}[
+  enhanced,
+  colback   = pfNavy,
+  colframe  = pfNavy,
+  arc       = 4pt,
+  boxrule   = 0pt,
+  left=12pt, right=12pt, top=10pt, bottom=10pt,
+]
+  \centering
+  {\bfseries\color{white}Need Help? Reach Out Anytime}\\[6pt]
+  \small\color{pfMid}
+  \faWhatsapp\ \textbf{\color{white}Anish Sir}\ \texttt{+91-79804 52273}
+  \quad\textcolor{pfMid}{|}\quad
+  \faWhatsapp\ \textbf{\color{white}Himanshu Sir}\ \texttt{+91-90791 08591}\\[6pt]
+  \faGlobe\ \href{https://prepfusion.in}{\color{white}www.prepfusion.in}
+  \qquad
+  \faYoutube\ \href{https://youtube.com/@PrepFusion-GATE}{\color{white}@PrepFusion-GATE}
+\end{tcolorbox}

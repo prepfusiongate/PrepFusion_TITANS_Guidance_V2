@@ -1,0 +1,193 @@
+
+% ── Encoding & Language ─────────────────────────────────────
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+% ── Page Geometry ───────────────────────────────────────────
+\usepackage[
+  top    = 0.6in,
+  bottom = 0.6in,
+  left   = 0.75in,
+  right  = 0.75in,
+  includeheadfoot
+]{geometry}
+
+% ── Colors ──────────────────────────────────────────────────
+\usepackage[dvipsnames, table]{xcolor}
+
+%  ★ BRAND PALETTE — edit these six lines to re-theme the doc
+\definecolor{pfNavy}    {HTML}{1A2F5A}   % Primary: deep navy (headings, rules)
+\definecolor{pfTeal}    {HTML}{0E7C7B}   % Accent:  teal (section titles)
+\definecolor{pfOrange}  {HTML}{E8602C}   % Alert:   action orange (callouts)
+\definecolor{pfCharcoal}{HTML}{2D2D2D}   % Body text charcoal
+\definecolor{pfLightBg} {HTML}{F4F6FA}   % Light background (boxes, alt rows)
+\definecolor{pfMid}     {HTML}{D0D7E8}   % Subtle border / rule colour
+
+% ── Typography ──────────────────────────────────────────────
+\usepackage[scaled=0.92]{helvet}         % Clean Helvetica sans-serif
+\usepackage{microtype}                   % Better kerning & line-breaking
+\renewcommand{\familydefault}{\sfdefault}% Make sans-serif the document default
+\color{pfCharcoal}                       % Apply body colour globally
+
+% ── Graphics & Watermark ────────────────────────────────────
+\usepackage{graphicx}
+\usepackage{tikz}                        % Used for watermark
+
+% ── Watermark Configuration ─────────────────────────────────
+%  Appears on EVERY page. Tweak opacity= between 0.03-0.10.
+%  To use a logo watermark instead of text, replace \node[...]{PrepFusion}
+%  with: \node{\includegraphics[width=8cm]{logo.png}};
+\usepackage{eso-pic}
+\usepackage{fontawesome5} % For \faMobileAlt and other icons
+\AddToShipoutPictureBG{%
+  \begin{tikzpicture}[remember picture, overlay]
+    \node[
+      rotate  = 45,              % ← angle of watermark
+      opacity = 0.05,            % ← transparency (0.03 = very faint, 0.12 = visible)
+      font    = \fontsize{72}{72}\selectfont\bfseries,
+      color   = pfNavy
+    ] at (current page.center) {PrepFusion};  % ← swap text or image here
+  \end{tikzpicture}%
+}
+
+% ── Header / Footer ─────────────────────────────────────────
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{%
+  \small\color{pfNavy}\textbf{PrepFusion}\ \textcolor{pfMid}{|}\ \batchname\ Batch Guidance
+}
+\fancyhead[R]{%
+  % ── LOGO in header ────────────────────────────────────────
+  %  Remove the comment below once logo.png is available
+  \includegraphics[height=18pt]{logo.png}
+  % \small\color{pfMid}GATE 
+}
+\fancyfoot[C]{%
+  \small\color{pfMid}Page \thepage\ of \pageref{LastPage}
+}
+\renewcommand{\headrulewidth}{1.2pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{pfNavy}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{pfMid}\leaders\hrule height \footrulewidth\hfill}}
+
+% ── Section Styling ──────────────────────────────────────────
+\usepackage{titlesec}
+
+% Section: simple navy rule + number
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{pfNavy}}
+  {\thesection.\hspace{6pt}}
+  {0pt}
+  {}
+  [\vspace{-8pt}\color{pfNavy}\rule{\linewidth}{1.2pt}]
+
+% Subsection: teal left rule
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries\color{pfTeal}}
+  {}
+  {0pt}
+  {\leavevmode\color{pfTeal}\rule[-2pt]{3pt}{12pt}\hspace{6pt}}
+
+\titlespacing*{\section}   {0pt}{18pt}{12pt}
+\titlespacing*{\subsection}{0pt}{12pt}{4pt}
+% ── Hyperlinks ───────────────────────────────────────────────
+\usepackage[
+  colorlinks = true,
+  linkcolor  = pfNavy,
+  urlcolor   = pfTeal,
+  citecolor  = pfNavy,
+  pdftitle   = {PrepFusion \batchname\space Batch Guidance},
+  pdfauthor  = {PrepFusion},
+]{hyperref}
+
+% ── Lists ────────────────────────────────────────────────────
+\usepackage{enumitem}
+
+% Compact global list defaults
+\setlist{
+  noitemsep,
+  topsep   = 4pt,
+  leftmargin = 1.6em,
+  parsep   = 0pt
+}
+\setlist[itemize]{label=\textcolor{pfTeal}{\textbullet}}
+\setlist[enumerate]{label=\textcolor{pfNavy}{\textbf{\arabic*.}}}
+
+% ── Tables ───────────────────────────────────────────────────
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{xltabular}
+\renewcommand{\arraystretch}{1.35}
+
+% ── Callout Boxes (tcolorbox) ────────────────────────────────
+\usepackage[most]{tcolorbox}
+
+% ── IMPORTANT alert box (orange) ─────────────────────────────
+\newtcolorbox{alertbox}[1][]{%
+  enhanced,
+  breakable,
+  colback    = pfOrange!8,
+  colframe   = pfOrange,
+  fonttitle  = \bfseries\small,
+  title      = {#1},
+  arc        = 3pt,
+  boxrule    = 1.2pt,
+  left=8pt, right=8pt, top=5pt, bottom=5pt,
+  before skip=8pt, after skip=8pt,
+}
+
+% ── Contact / Info box (navy) ─────────────────────────────────
+\newtcolorbox{infobox}[1][]{%
+  enhanced,
+  colback    = pfLightBg,
+  colframe   = pfNavy,
+  fonttitle  = \bfseries\small\color{white},
+  colbacktitle = pfNavy,
+  title      = {#1},
+  arc        = 3pt,
+  boxrule    = 1pt,
+  left=8pt, right=8pt, top=5pt, bottom=5pt,
+  before skip=8pt, after skip=8pt,
+}
+
+% ── Step box (teal, numbered steps) ──────────────────────────
+\newtcolorbox{stepbox}[1][]{%
+  enhanced,
+  colback    = pfTeal!6,
+  colframe   = pfTeal,
+  fonttitle  = \bfseries\small\color{white},
+  colbacktitle = pfTeal,
+  title      = {#1},
+  arc        = 3pt,
+  boxrule    = 1pt,
+  left=8pt, right=8pt, top=5pt, bottom=5pt,
+  before skip=8pt, after skip=8pt,
+}
+
+% ── Note box (inline, frameless subtle) ──────────────────────
+\newtcolorbox{notebox}{%
+  enhanced,
+  colback   = pfMid!30,
+  colframe  = pfMid,
+  arc       = 2pt,
+  boxrule   = 0.7pt,
+  left=6pt, right=6pt, top=3pt, bottom=3pt,
+  before skip=6pt, after skip=6pt,
+}
+
+% ── Misc utilities ───────────────────────────────────────────
+\usepackage{parskip}            % Space between paragraphs, no indent
+\usepackage{setspace}
+\setstretch{1.18}
+
+\usepackage{array}
+\usepackage{ragged2e}
+
+% ── Convenience macro ────────────────────────────────────────
+\newcommand{\pflink}[2]{\href{#1}{\textcolor{pfTeal}{\underline{#2}}}}
+\newcommand{\pf}{\textbf{\textcolor{pfNavy}{PrepFusion}}}
+\newcommand{\sectionrule}{\vspace{2pt}\textcolor{pfMid}{\hrule}\vspace{6pt}}
+

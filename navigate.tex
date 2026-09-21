@@ -1,0 +1,86 @@
+% ================================================================
+%  PrepFusion NAVIGATE Batch Guidance
+%  Shares preamble.tex and body.tex with main.tex (TITANS).
+%  Only the intro below is NAVIGATE-specific — edit it freely.
+% ================================================================
+
+\documentclass[12pt, a4paper]{article}
+
+\newcommand{\batchname}{NAVIGATE}
+\newcommand{\videointro}{%
+  Watch the following in the order listed. They cover strategy, study
+  techniques, tools and career guidance for your GATE journey.}
+
+\input{preamble}
+
+\begin{document}
+
+% ── TITLE PAGE HEADER ────────────────────────────────────────
+\begin{tcolorbox}[
+  enhanced,
+  colback   = pfNavy,
+  colframe  = pfNavy,
+  arc       = 0pt,
+  boxrule   = 0pt,
+  left=16pt, right=16pt, top=18pt, bottom=14pt,
+]
+  \begin{minipage}[c]{0.72\linewidth}
+    {\fontsize{22}{26}\selectfont\bfseries\color{white}
+      PrepFusion NAVIGATE Batch}\\[4pt]
+    {\large\color{pfMid} Student Onboarding \& Preparation Guide}\\[6pt]
+    {\small\color{pfMid}
+      \faCalendar\enspace GATE Edition\quad
+      \faCompass\enspace NAVIGATE Batch\quad
+      \faGlobe\enspace \href{https://prepfusion.in}{\color{white}prepfusion.in}
+    }
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[c]{0.24\linewidth}
+    \raggedleft
+    % ── LOGO PLACEHOLDER ──────────────────────────────────────
+    %  Uncomment & place logo.png in the same folder as this file
+    \includegraphics[width=3.2cm]{logo.png}
+    %
+    % %  Placeholder visual when logo is absent:
+    % \begin{tcolorbox}[
+    %   colback=white!15!pfNavy, colframe=white!30!pfNavy,
+    %   arc=4pt, boxrule=1pt,
+    %   left=6pt,right=6pt,top=8pt,bottom=8pt,
+    %   halign=center
+    % ]
+    %   \color{white}\small\bfseries LOGO\\[2pt]
+    %   \tiny\color{pfMid}Replace with\\logo.png
+    % \end{tcolorbox}
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{14pt}
+
+% ── WELCOME NOTE ─────────────────────────────────────────────
+\begin{infobox}[\faHandshake\enspace Welcome to NAVIGATE!]
+  \small
+  Hi! Thanks for joining the \textbf{PrepFusion NAVIGATE Batch}. This guide
+  covers everything you need to get started---strategy, resources, app setup,
+  and troubleshooting.
+
+  \vspace{6pt}
+  \textbf{Your Direct Support Contacts:}
+
+  \begin{tabular}{@{}ll@{\hspace{24pt}}ll@{}}
+    \faWhatsapp\ \textbf{Anish Sir}    & \texttt{+91-7980452273} &
+    \faWhatsapp\ \textbf{Himanshu Sir} & \texttt{+91-9079108591}
+  \end{tabular}
+
+  \vspace{4pt}
+  {\footnotesize\color{pfNavy}
+    Tip: Briefly introduce yourself when you first message so we can guide you better!}
+\end{infobox}
+
+\vspace{4pt}
+
+% TODO: NAVIGATE-specific introduction text goes here (replaces the
+%       TITANS "Preparation Strategy" section).
+
+\input{body}
+
+\end{document}

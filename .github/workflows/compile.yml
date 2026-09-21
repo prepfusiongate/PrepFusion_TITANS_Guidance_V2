@@ -16,8 +16,10 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
-          # ⚠️ CHANGE THIS if your main LaTeX file is named something else (e.g., guidance.tex)
-          root_file: main.tex 
+          # One PDF per batch; both share preamble.tex and body.tex
+          root_file: |
+            main.tex
+            navigate.tex
 
       - name: Prepare PDF and Redirect for Deployment
         run: |
@@ -27,6 +29,7 @@ jobs:
           # 2. Copy and rename your PDF to a clean name
           # (You can change 'TITANS_Guidance.pdf' to whatever file name you want)
           cp main.pdf public/TITANS_Guidance.pdf
+          cp navigate.pdf public/NAVIGATE_Guidance.pdf
           
           # 3. Create an index file that auto-redirects 'docs.prepfusion.in' straight to the PDF
           echo '<meta http-equiv="refresh" content="0; url=TITANS_Guidance.pdf">' > public/index.html

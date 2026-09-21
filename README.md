@@ -467,3 +467,17 @@ For questions or issues:
 ---
 
 **Happy documenting! 🚀**
+
+---
+
+## Multi-batch layout (TITANS + NAVIGATE)
+
+| File | Purpose |
+|------|---------|
+| `main.tex` | TITANS PDF — TITANS intro + Preparation Strategy |
+| `navigate.tex` | NAVIGATE PDF — NAVIGATE intro only |
+| `preamble.tex` | Shared packages, colours, boxes, macros |
+| `body.tex` | Shared sections: Essential Videos onward |
+
+Update a video once in `body.tex` (one `\ytrow{Topic}{videoID}{si-token}` line) and both PDFs pick it up.
+On push, CI publishes `TITANS_Guidance.pdf` and `NAVIGATE_Guidance.pdf` to `docs.prepfusion.in`.
